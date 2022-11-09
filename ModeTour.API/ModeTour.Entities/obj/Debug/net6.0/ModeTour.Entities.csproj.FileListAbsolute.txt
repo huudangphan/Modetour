@@ -1,0 +1,12 @@
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\bin\Debug\net6.0\ModeTour.Entities.deps.json
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\bin\Debug\net6.0\ModeTour.Entities.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\bin\Debug\net6.0\ModeTour.Entities.pdb
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.csproj.AssemblyReference.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.AssemblyInfoInputs.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.AssemblyInfo.cs
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.csproj.CoreCompileInputs.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\refint\ModeTour.Entities.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ModeTour.Entities.pdb
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Entities\obj\Debug\net6.0\ref\ModeTour.Entities.dll

@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Help\**" />
+    <EmbeddedResource Remove="Help\**" />
+    <None Remove="Help\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helper\JsonHelper.cs" />
+    <Compile Remove="Helper\ServiceData.cs" />
+    <Compile Remove="Helper\ServiceHelper.cs" />
+    <Compile Remove="Helper\WebAPIHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModeTour.Entities\ModeTour.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

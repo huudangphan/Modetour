@@ -1,0 +1,15 @@
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\bin\Release\net6.0\ModeTour.Commons.deps.json
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\bin\Release\net6.0\ModeTour.Commons.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\bin\Release\net6.0\ModeTour.Commons.pdb
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\bin\Release\net6.0\ModeTour.Entities.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\bin\Release\net6.0\ModeTour.Entities.pdb
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.csproj.AssemblyReference.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.GeneratedMSBuildEditorConfig.editorconfig
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.AssemblyInfoInputs.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.AssemblyInfo.cs
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.csproj.CoreCompileInputs.cache
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.csproj.CopyComplete
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\refint\ModeTour.Commons.dll
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ModeTour.Commons.pdb
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.Commons\obj\Release\net6.0\ref\ModeTour.Commons.dll
