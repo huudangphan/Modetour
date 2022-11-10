@@ -337,11 +337,6 @@ namespace Modetour.Services.Repositories.Flight
             try
             {
 
-                if (model.user.IsLogin)
-                {
-                    var coupon = GetCoupon(model.user.ID, model);
-                }
-
                 return new HttpResult()
                 {
                     messageCode = MessageCode.Success,
@@ -362,11 +357,11 @@ namespace Modetour.Services.Repositories.Flight
             }
         }
         /// <summary>
-        /// 
+        /// When user login, check coupon
         /// </summary>
         /// <param name="PID"> user ID</param>
         /// <param name="model"></param>
-        public CouponBookingGroupListRSModel GetCoupon(string PID, ChooseFlightModel model)
+        public CouponBookingGroupListRSModel GetCoupon(ChooseFlightModelx model)
         {
             _pax_type["ADT"] = Functions.ParseInt(model.searchFare.ADC);
             _pax_type["CHD"] = Functions.ParseInt(model.searchFare.CHC);
@@ -400,7 +395,7 @@ namespace Modetour.Services.Repositories.Flight
             CouponBookingGroupListXRQModel.CouponBookingGroupListXModel requestModel = new CouponBookingGroupListXRQModel.CouponBookingGroupListXModel
             {
                 useOid = 0,
-                usePid = Functions.ParseInt(PID),
+                usePid = Functions.ParseInt(model.user.PTID),
                 PCode = "IA",
                 GDS = FXL.PaxGDS,
                 CountryCode = ACTC, //첫번째여정의국가코드
@@ -517,7 +512,11 @@ namespace Modetour.Services.Repositories.Flight
                 };
             }
         }
-
+        /// <summary>
+        /// Term and conditiion flight
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public HttpResult SearchRule(SearchRule3RQModel model)
         {
             try
@@ -545,39 +544,7 @@ namespace Modetour.Services.Repositories.Flight
                 };
             }
         }
-        public List<CodeModel> GetCardCode()
-        {
-            var paxType = new BookingPaxType
-            {
-                Code = FXL.Summary.Pmcd,
-                Card = FXL.Summary.Pmsc.Equals("13") ? string.Empty : FXL.Summary.Pmsn,
-                Sign = FXL.Summary.Pmsc,
-                Explain = FXL.Summary.Pmtl
-            };
-            List<CodeModel> result = new List<CodeModel>();
 
-            if (!string.IsNullOrWhiteSpace(paxType.Card)) //프로모션운임
-            {
-                switch (paxType.Code)
-                {
-                    case "ADT140":
-                        result.Add(new CodeModel() { Name = "삼성2V3카드" });
-                        break;
-                    default:
-                        result.Add(new CodeModel() { Name = paxType.Card });
-                        break;
-                }
-            }
-            else
-            {
-                List<CodeModel> list = GetList("RH").ToList();
-                list.Insert(0, new CodeModel() { Code = "0", Name = "선택" });
-                list.RemoveAll(item => item.Name == "특가" || item.Name == "기타");
-                result = list;
-            }
-
-            return result;
-        }
         public static List<CodeModel> GetList(string group)
         {
             DBHelper db = new DBHelper(GlobalData.connectionStrModeWare3, true);
@@ -619,6 +586,61 @@ namespace Modetour.Services.Repositories.Flight
             }
 
             return result;
+        }
+        /// <summary>
+        /// Get card code company
+        /// </summary>
+        /// <param name="pax"></param>
+        /// <returns></returns>
+        public HttpResult GetCardCode(BookingPaxType pax)
+        {
+            try
+            {
+                List<CodeModel> result = new List<CodeModel>();
+
+                if (!string.IsNullOrWhiteSpace(pax.Card)) //프로모션운임
+                {
+                    switch (pax.Code)
+                    {
+                        case "ADT140":
+                            result.Add(new CodeModel() { Name = "삼성2V3카드" });
+                            break;
+                        default:
+                            result.Add(new CodeModel() { Name = pax.Card });
+                            break;
+                    }
+                }
+                else
+                {
+                    List<CodeModel> list = GetList("RH").ToList();
+                    list.Insert(0, new CodeModel() { Code = "0", Name = "선택" });
+                    list.RemoveAll(item => item.Name == "특가" || item.Name == "기타");
+                    result = list;
+                }
+
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Success,
+                    content = result,
+                    message = ""
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Error,
+                    content = null,
+                    message = Functions.ToString(ex.Message)
+                };
+            }
+
+        }
+
+        HttpResult IAirBooking.GetCoupon(ChooseFlightModelx model)
+        {
+            throw new NotImplementedException();
         }
     }
 

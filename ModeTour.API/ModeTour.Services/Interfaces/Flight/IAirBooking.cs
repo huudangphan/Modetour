@@ -12,6 +12,8 @@ namespace Modetour.Services.Interfaces.Flight
         public HttpResult ChooseFlight(ChooseFlightModel model);
         public HttpResult GetTodayList(int count);
         public HttpResult SearchRule(SearchRule3RQModel model);
+        public HttpResult GetCardCode(BookingPaxType pax);
+        public HttpResult GetCoupon(ChooseFlightModelx model);
         //public HttpResult LoadPrice(SearchRule3RQModel model);
     }
 }
