@@ -5,32 +5,32 @@ namespace ModeTour.Entities
     public class CouponModel
     {
         /// <summary>
-        /// 쿠폰 발급번호[key]
+        /// 쿠폰 발급번호[key] --voucher issue number [key]
         /// </summary>
         [XmlElement(ElementName = "issueNumber")]
         public int issueNumber { set; get; }
 
         /// <summary>
-        /// 발급주문번호
+        /// 발급주문번호 --Release number
         /// </summary>
         [XmlElement(ElementName = "issueOid")]
         public int issueOid { set; get; }
 
         /// <summary>
-        /// 발급자PTID(예약자) 
+        /// 발급자PTID(예약자)  --issue PTID(order)
         /// </summary>
         [XmlElement(ElementName = "issuePid")]
         public int issuePid { set; get; }
 
         /// <summary>
-        /// 발급일
+        /// 발급일 --realse date
         /// </summary>
         [XmlElement(ElementName = "issueDate")]
         public string issueDate { set; get; }
 
         /// <summary>
         /// 할인 번호
-        /// </summary>
+        /// </summary> --discount number
         [XmlElement(ElementName = "dcNumber")]
         public Int64 DcNum { set; get; }
 
@@ -47,25 +47,26 @@ namespace ModeTour.Entities
         public string couponName { set; get; }
 
         /// <summary>
-        /// 할인구분[percent, price]
+        /// 할인구분[percent, price] --discount categories
         /// </summary>
         [XmlElement(ElementName = "divisionPP")]
         public string divisionPP { set; get; }
 
         /// <summary>
-        /// 할인율 또는 할인금액 
+        /// 할인율 또는 할인금액 --Discount rate or discount amount
         /// </summary>
         [XmlElement(ElementName = "couponPercent")]
         public double couponPercent { set; get; }
 
         /// <summary>
-        /// 최소적용금액[판매금액대비 할인 적용 할 수 있는 금액]
+        /// 최소적용금액[판매금액대비 할인 적용 할 수 있는 금액] --Minimum amount to apply [Amount to apply for discount against sales amount]
         /// </summary>
         [XmlElement(ElementName = "couponMinPrice")]
         public int couponMinPrice { set; get; }
 
-        /// <summary>
-        /// 최대할인금액[할인 가능한 최대금액] 
+        /// <summary> 
+        /// 최대할인금액[할인 가능한 최대금액]  -- Maximum Discount Amount[Maximum Discount Amount Available]
+
         /// </summary>
         [XmlElement(ElementName = "couponMaxPrice")]
         public int couponMaxPrice { set; get; }

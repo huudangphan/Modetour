@@ -13,40 +13,12 @@ namespace Modetour.Services.Repositories.Flight
 {
     public class AirBookingRepository : GenericRepository<SearchFareAvailSimpleRSModel>, IAirBooking
     {
-        #region Field
-        public SearchFareAvailSimpleRSModel model = null;
-        protected Dictionary<string, string> NationCodeList = new Dictionary<string, string>();
-        protected Dictionary<string, string> _airline_list = new Dictionary<string, string>();
-        protected Dictionary<string, string> _airport_list = new Dictionary<string, string>();
-
-        protected String DLC = "", ALC = "", DTD = "", ARD = "", DCTC = "", ACTC = ""; //출발도시, 도착도시, 출발일, 도착일, 출발국가코드, 도착국가코드
-        protected String DLCNM = "", ALCNM = ""; //출발도시명, 도착도시명
-        protected String ROT = "", CCD = "", DRT = ""; //여정(왕복,편도,IN/OUT,다구간) , 좌석(일반/비즈니스/일등), 직항여부
-        protected String SAC = "", SORT = ""; //항공사코드, 정렬
-        protected Int32 SNM = 2, ADC = 0, CHC = 0, IFC = 0;
-        protected Int32 ewtMin = 0, ewtMax = 0;
-
-        protected int SegCNT = 1;
-        protected String DLCTXT = "", ALCTXT = "", DTDTXT = "", ARDTXT = "";
-        protected String FGID = "", FREF = "";
-
-        protected DateTime Step0, Step1, Step2, Step3, Step4;
-        #endregion
-        protected string[] KOR_DEPATURE = { "CJJ", "CJU", "GMP", "HIN", "ICN", "KAG", "KPO", "KUV", "KWJ", "MPK", "MWX", "PUS", "RSU", "SEL", "SHO", "TAE", "USN", "WJU", "YEC", "YNY" };
-        protected string GOOGLE_TAG_NAME = string.Empty;
-        protected String RHN = "", RBD = "", RMN = "", RSN = "", RFN = "", RGD = "", RLF = "", REA = "";
-        public UserModel User = new UserModel();
         public AppDbContext context;
-        public List<AirportDSModel> AirportModel = null;
-        protected ItineraryModel SXL = null;
-        protected SearchFareAvailSimpleRSModel.NewPaxFareGroupModel FXL = null;
-        protected Dictionary<string, int> _pax_type = new Dictionary<string, int>() { { "ADT", 1 }, { "CHD", 0 }, { "INF", 0 } };
         public SearchFareAvailSimpleRSModel.PriceIndexModel NewPriceIndex = null;
         public AirBookingRepository(AppDbContext context) : base(context)
         {
             this.context = context;
         }
-
         public HttpResult GetBanner()
         {
             try
@@ -73,25 +45,6 @@ namespace Modetour.Services.Repositories.Flight
                     content = Functions.ToString(ex.Message)
                 };
             }
-        }
-        protected string GetArrowClassName(string rot)
-        {
-            string result = string.Empty;
-
-            switch (rot)
-            {
-                case "DT":
-                case "MD":
-                    result = "more_flight";
-                    break;
-                case "OW":
-                    result = "one_flight";
-                    break;
-                default:
-                    result = "two_flight";
-                    break;
-            }
-            return result;
         }
 
         public HttpResult GetMajorCities()
@@ -124,7 +77,7 @@ namespace Modetour.Services.Repositories.Flight
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ListResult"> parameter search flight list</param>
+        /// <param name="model"> parameter search flight list</param>
         /// <returns></returns>
         public HttpResult GetFlightList(SearchFareAvailSimpleRQModel model)
         {
@@ -279,7 +232,6 @@ namespace Modetour.Services.Repositories.Flight
                     message = Functions.ToString(ex.Message)
 
                 };
-
             }
         }
         public HttpResult GetNotice(int gbn, int count)
@@ -356,71 +308,8 @@ namespace Modetour.Services.Repositories.Flight
                 };
             }
         }
-        /// <summary>
-        /// When user login, check coupon
-        /// </summary>
-        /// <param name="PID"> user ID</param>
-        /// <param name="model"></param>
-        public CouponBookingGroupListRSModel GetCoupon(ChooseFlightModelx model)
-        {
-            _pax_type["ADT"] = Functions.ParseInt(model.searchFare.ADC);
-            _pax_type["CHD"] = Functions.ParseInt(model.searchFare.CHC);
-            _pax_type["INF"] = Functions.ParseInt(model.searchFare.IFC);
-            SXL = XmlHelper.ConvertObject(System.Net.WebUtility.HtmlDecode(model.rule.SXL), typeof(ItineraryModel)) as ItineraryModel;
-            _airport_list =
-                     (from f in SXL.SegGroup.SelectMany(s => s.Seg)
-                      select f.DLC)
-                         .Union
-                         (from f in SXL.SegGroup.SelectMany(s => s.Seg)
-                          select f.ALC)
-                          //기착정보
-                          .Union
-                          (from f in SXL.SegGroup.SelectMany(s => s.Seg.SelectMany(t => t.StopOver)) select f.DLC)
-                          .Union
-                          (from f in SXL.SegGroup.SelectMany(s => s.Seg.SelectMany(t => t.StopOver)) select f.ALC)
-                         .ToDictionary(s => s);
-
-            AirportModel = GetAirportList(string.Join(",", _airport_list.Keys.ToArray()));
-            var q = AirportModel;
-            ACTC = AirportModel.Where(w => w.AirportCode.Equals(SXL.SegGroup.FirstOrDefault().Seg.Last().ALC)).First().NationCode.Trim();
-            _airport_list.Keys.ToList().ForEach(key =>
-            {
-                _airport_list[key] = q.FirstOrDefault(f => f.AirportCode == key) == null ? key : q.FirstOrDefault(f => f.AirportCode == key).CityKorName;
-                if (key == "ICN") _airport_list[key] = "인천";
-                if (key == "GMP") _airport_list[key] = "김포";
-                if (key == "SEL") _airport_list[key] = "인천/김포";
-            });
-
-
-            CouponBookingGroupListXRQModel.CouponBookingGroupListXModel requestModel = new CouponBookingGroupListXRQModel.CouponBookingGroupListXModel
-            {
-                useOid = 0,
-                usePid = Functions.ParseInt(model.user.PTID),
-                PCode = "IA",
-                GDS = FXL.PaxGDS,
-                CountryCode = ACTC, //첫번째여정의국가코드
-                CityCode = "",
-                ItemCode = "",
-                Price = FXL.Summary.Price, //총판매가
-                Gross = FXL.Summary.DisFare, //항공권운임
-                DepartureDate = Convert.ToDateTime(DTD.Split(',').ToList().First().Replace(".", "-")),
-                Passenger = _pax_type.Sum(s => s.Value)
-            };
-            var temp = APIHelper.PostData(requestModel, "http://couponservice.modetour.com/coupon/couponBookingGroupListX");
-            ResultModel couponListRM = (ResultModel)(APIHelper.ConvertJsonToObjectx(Functions.ToString(temp))) as ResultModel;
-            if (couponListRM.Code == "0")
-            {
-                if (couponListRM.Data != null)
-                {
-                    CouponBookingGroupListRSModel data = APIHelper.ConvertJsonToObject(Functions.ToString(couponListRM.Data), typeof(CouponBookingGroupListRSModel)) as CouponBookingGroupListRSModel;
-                    return data;
-                }
-            }
-            return null;
-        }
         public List<AirportDSModel> GetAirportList(string codes)
         {
-
             var result = new List<AirportDSModel>();
             DBHelper db = new DBHelper(GlobalData.connectionStrNewAegle3, true);
             db.SetProcedureName("dbo.WSP_S_공항명");
@@ -513,7 +402,7 @@ namespace Modetour.Services.Repositories.Flight
             }
         }
         /// <summary>
-        /// Term and conditiion flight
+        /// Term and condition flight
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -521,10 +410,8 @@ namespace Modetour.Services.Repositories.Flight
         {
             try
             {
-
                 var objectResult = APIHelper.PostData(model, GlobalData.baseUrlService3 + "SearchRuleRS");
                 ResultModel modelResult = (ResultModel)APIHelper.ConvertJsonToObject(Functions.ToString(objectResult), typeof(ResultModel));
-
                 return new HttpResult()
                 {
                     messageCode = MessageCode.Success,
@@ -540,11 +427,9 @@ namespace Modetour.Services.Repositories.Flight
                     messageCode = MessageCode.Exception,
                     content = "",
                     message = Functions.ToString(ex.Message)
-
                 };
             }
         }
-
         public static List<CodeModel> GetList(string group)
         {
             DBHelper db = new DBHelper(GlobalData.connectionStrModeWare3, true);
@@ -597,7 +482,6 @@ namespace Modetour.Services.Repositories.Flight
             try
             {
                 List<CodeModel> result = new List<CodeModel>();
-
                 if (!string.IsNullOrWhiteSpace(pax.Card)) //프로모션운임
                 {
                     switch (pax.Code)
@@ -627,7 +511,97 @@ namespace Modetour.Services.Repositories.Flight
             }
             catch (Exception ex)
             {
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Error,
+                    content = null,
+                    message = Functions.ToString(ex.Message)
+                };
+            }
+        }
+        /// <summary>
+        /// Get coupon when user login
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public HttpResult GetCoupon(ChooseFlightModelx model, string userId)
+        {
+            try
+            {
+                CouponBookingGroupListRSModel data = null;
+                List<AirportDSModel> AirportModel = null;
+                PriceIndexModel newPriceIndex = new PriceIndexModel();
+                String DLC = "", DTD = "", ACTC = "";
+                var FXL = XmlHelper.ConvertObject(System.Net.WebUtility.HtmlDecode(model.rule.FXL), typeof(NewPaxFareGroupModel)) as NewPaxFareGroupModel;
+                Dictionary<string, int> _pax_type = new Dictionary<string, int>() { { "ADT", 1 }, { "CHD", 0 }, { "INF", 0 } };
+                _pax_type["ADT"] = Functions.ParseInt(model.searchFare.ADC);
+                _pax_type["CHD"] = Functions.ParseInt(model.searchFare.CHC);
+                _pax_type["INF"] = Functions.ParseInt(model.searchFare.IFC);
+                ItineraryModel SXL = XmlHelper.ConvertObject(System.Net.WebUtility.HtmlDecode(model.rule.SXL), typeof(ItineraryModel)) as ItineraryModel;
+                if (SXL != null)
+                {
+                    Dictionary<string, string> _airport_list = new Dictionary<string, string>();
+                    _airport_list =
+                             (from f in SXL.SegGroup.SelectMany(s => s.Seg)
+                              select f.DLC)
+                                 .Union
+                                 (from f in SXL.SegGroup.SelectMany(s => s.Seg)
+                                  select f.ALC)
+                                  //기착정보
+                                  .Union
+                                  (from f in SXL.SegGroup.SelectMany(s => s.Seg.SelectMany(t => t.StopOver)) select f.DLC)
+                                  .Union
+                                  (from f in SXL.SegGroup.SelectMany(s => s.Seg.SelectMany(t => t.StopOver)) select f.ALC)
+                                 .ToDictionary(s => s);
+                    if (FXL != null && _airport_list != null)
+                    {
+                        #region Get coupon
+                        AirportModel = GetAirportList(string.Join(",", _airport_list.Keys.ToArray()));
+                        if (AirportModel != null)
+                        {
+                            var q = AirportModel;
+                            ACTC = AirportModel.Where(w => w.AirportCode.Equals(SXL.SegGroup.FirstOrDefault().Seg.Last().ALC)).First().NationCode.Trim();
+                            _airport_list.Keys.ToList().ForEach(key =>
+                            {
+                                _airport_list[key] = q.FirstOrDefault(f => f.AirportCode == key) == null ? key : q.FirstOrDefault(f => f.AirportCode == key).CityKorName;
+                                if (key == "ICN") _airport_list[key] = "인천";
+                                if (key == "GMP") _airport_list[key] = "김포";
+                                if (key == "SEL") _airport_list[key] = "인천/김포";
+                            });
+                            CouponBookingGroupListXRQModel.CouponBookingGroupListXModel requestModel = new CouponBookingGroupListXRQModel.CouponBookingGroupListXModel
+                            {
+                                useOid = 0,
+                                usePid = Functions.ParseInt(userId),
+                                PCode = "IA",
+                                GDS = FXL.PaxGDS,
+                                CountryCode = ACTC,
+                                CityCode = "",
+                                ItemCode = "",
+                                Price = FXL.Summary.Price,
+                                Gross = FXL.Summary.DisFare,
+                                DepartureDate = Convert.ToDateTime(DTD.Split(',').ToList().First().Replace(".", "-")),
+                                Passenger = _pax_type.Sum(s => s.Value)
+                            };
+                            var temp = APIHelper.PostData(requestModel, "http://couponservice.modetour.com/coupon/couponBookingGroupListX");
+                            ResultModel couponListRM = (ResultModel)(APIHelper.ConvertJsonToObjectx(Functions.ToString(temp))) as ResultModel;
+                            if (couponListRM.Code == "0" && couponListRM.Data != null)
+                            {
+                                data = APIHelper.ConvertJsonToObject(Functions.ToString(couponListRM.Data), typeof(CouponBookingGroupListRSModel)) as CouponBookingGroupListRSModel;
 
+                            }
+                        }
+                        #endregion
+                    }
+                }
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Success,
+                    content = data,
+                    message = ""
+                };
+            }
+            catch (Exception ex)
+            {
                 return new HttpResult()
                 {
                     messageCode = MessageCode.Error,
@@ -637,10 +611,69 @@ namespace Modetour.Services.Repositories.Flight
             }
 
         }
-
-        HttpResult IAirBooking.GetCoupon(ChooseFlightModelx model)
+        /// <summary>
+        /// When select ticket, check this ticket increased in price
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public HttpResult CheckFare(CheckSelectFareRQModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ResultModel tmp = (ResultModel)APIHelper.PostData(model, GlobalData.baseUrlService + "/CheckSelectFareRS");
+                if (!tmp.Code.Equals("200"))
+                {
+                    return new HttpResult
+                    {
+                        messageCode = MessageCode.None,
+                        message = "예약 불가 안내] 선택하신 운임은 항공료 변동(상향)으로 인해 해당운임으로 발권이 불가합니다. 다른 운임으로 재예약 부탁드립니다. 서비스이용에 불편을 드려 죄송합니다.",
+                        content = null
+                    };
+                }
+                else
+                {
+                    return new HttpResult()
+                    {
+                        messageCode = MessageCode.Success,
+                        message = "예약 불가 안내] 선택하신 운임은 항공료 변동(상향)으로 인해 해당운임으로 발권이 불가합니다. 다른 운임으로 재예약 부탁드립니다. 서비스이용에 불편을 드려 죄송합니다.",
+                        content = null
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Error,
+                    content = null,
+                    message = Functions.ToString(ex.Message)
+                };
+            }
+        }
+
+        public HttpResult Booking(BookingRequestModel model)
+        {
+            try
+            {
+
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Success,
+                    content = null,
+                    message = ""
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new HttpResult()
+                {
+                    messageCode = MessageCode.Error,
+                    content = null,
+                    message = Functions.ToString(ex.Message)
+                };
+            }
         }
     }
 

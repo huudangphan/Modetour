@@ -78,3 +78,4 @@ D:\QTS\project\ModeTour\ModeTour.API\ModeTour.API\bin\Debug\net6.0\Microsoft.Ext
 D:\QTS\project\ModeTour\ModeTour.API\ModeTour.API\bin\Debug\net6.0\Microsoft.Extensions.PlatformAbstractions.dll
 D:\QTS\project\ModeTour\ModeTour.API\ModeTour.API\bin\Debug\net6.0\Nancy.dll
 D:\QTS\project\ModeTour\ModeTour.API\ModeTour.API\obj\Debug\net6.0\ModeTour.API.MvcApplicationPartsAssemblyInfo.cs
+D:\QTS\project\ModeTour\ModeTour.API\ModeTour.API\bin\Debug\net6.0\TypeMerger.dll

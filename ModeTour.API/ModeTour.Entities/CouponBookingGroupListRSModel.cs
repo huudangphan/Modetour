@@ -23,19 +23,19 @@ namespace ModeTour.Entities
             public class BookingInfoModel
             {
                 /// <summary>
-                /// 사용자주문번호
+                /// 사용자주문번호 -- user order no
                 /// </summary>
                 [XmlElement(ElementName = "useOid")]
                 public int useOid { set; get; }
 
                 /// <summary>
-                /// 출발일, 체크인 날짜
+                /// 출발일, 체크인 날짜 
                 /// </summary>
                 [XmlElement(ElementName = "departureDate")]
                 public string departureDate { set; get; }
 
                 /// <summary>
-                /// 공급사코드
+                /// 공급사코드 -- supplier no
                 /// </summary>
                 [XmlElement(ElementName = "gdsCode")]
                 public string gdsCode { set; get; }
@@ -59,7 +59,7 @@ namespace ModeTour.Entities
                 public string itemCode { set; get; }
 
                 /// <summary>
-                /// 항공료, 호텔요금[할인받을 요금]
+                /// 항공료, 호텔요금[할인받을 요금] -- airfare, hotel [discounted price]
                 /// </summary>
                 [XmlElement(ElementName = "gross")]
                 public int gross { set; get; }

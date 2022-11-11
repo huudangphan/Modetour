@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModeTour.Commons;
-using ModeTour.Commons.Helper;
 using ModeTour.Entities;
-using ModeTour.Entity;
 using ModeTour.Services;
 
 namespace ModeTour.API.Controllers.Flight
@@ -14,43 +12,20 @@ namespace ModeTour.API.Controllers.Flight
         private UnitOfWorks unitOfWork;
         public AirBookingController()
         {
+            /// Initalization function
             unitOfWork = GetUnitOfWork();
         }
+        #region page Main
         [HttpGet]
         public HttpResult GetBanner()
         {
             return unitOfWork.AirBooking.GetBanner();
 
         }
-        [HttpPost]
-        public HttpResult GetFightList([FromBody] SearchFareAvailSimpleRQModel model)
-        {
-            return unitOfWork.AirBooking.GetFlightList(model);
-        }
-        [HttpPost]
-        public HttpResult Test([FromBody] SearchFareAvailSimpleRQModel model)
-        {
-            var objectResult = APIHelper.PostData(model, "https://localhost:7271/api/v1/Flight/AirBooking/GetFightList");
-            HttpResult m = new HttpResult();
-            var oMyclass = APIHelper.ConvertJsonToObject(Functions.ToString(objectResult));
-            SearchFareAvailSimpleRSModel tmp = (SearchFareAvailSimpleRSModel)APIHelper.ConvertJsonToObject(Functions.ToString(oMyclass.content), typeof(SearchFareAvailSimpleRSModel));
-            return new HttpResult
-            {
-                message = "",
-                messageCode = MessageCode.None,
-                content = tmp
-
-            };
-        }
         [HttpGet]
         public HttpResult GetMajorCity()
         {
             return unitOfWork.AirBooking.GetMajorCities();
-        }
-        [HttpPost]
-        public HttpResult ChooseFlight([FromBody] ChooseFlightModel model)
-        {
-            return unitOfWork.AirBooking.ChooseFlight(model);
         }
         [HttpGet]
         public HttpResult GetTodayList(int count)
@@ -62,10 +37,44 @@ namespace ModeTour.API.Controllers.Flight
         {
             return unitOfWork.AirBooking.GetNotice(gbn, count);
         }
+        #endregion
+        #region page List
+        [HttpPost]
+        public HttpResult GetFightList([FromBody] SearchFareAvailSimpleRQModel model)
+        {
+            return unitOfWork.AirBooking.GetFlightList(model);
+        }
+        /// <summary>
+        /// Check ticket can be selected
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public HttpResult CheckFare([FromBody] CheckSelectFareRQModel model)
+        {
+            return unitOfWork.AirBooking.CheckFare(model);
+        }
+        #endregion
+        #region page Input
+
+
         [HttpPost]
         public HttpResult SearchRule([FromBody] SearchRule3RQModel model)
         {
             return unitOfWork.AirBooking.SearchRule(model);
         }
+        [HttpPost]
+        public HttpResult GetCoupon([FromBody] ChooseFlightModelx model, string userId)
+        {
+            return unitOfWork.AirBooking.GetCoupon(model, userId);
+        }
+        [HttpPost]
+        public HttpResult GetCompanyCardCode([FromBody] BookingPaxType pax)
+        {
+            return unitOfWork.AirBooking.GetCardCode(pax);
+        }
+
+        #endregion
+
     }
 }

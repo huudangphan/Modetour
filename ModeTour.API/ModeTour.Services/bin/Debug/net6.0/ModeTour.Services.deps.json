@@ -13,7 +13,8 @@
           "ModeTour.Commons": "1.0.0",
           "ModeTour.Entities": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
-          "System.Data.SqlClient": "4.8.4"
+          "System.Data.SqlClient": "4.8.4",
+          "TypeMerger": "2.1.1"
         },
         "runtime": {
           "ModeTour.Services.dll": {}
@@ -1481,6 +1482,14 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "TypeMerger/2.1.1": {
+        "runtime": {
+          "lib/netstandard2.1/TypeMerger.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      },
       "ModeTour.Commons/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -2493,6 +2502,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "TypeMerger/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9rIhG7zNCzaDgYSZYJB0jO80Km+C0ipPttbSgj/TgcLOAgb/HCWDW4ozzAWyX+DtW+sH9UB8euaQokEzzjcliQ==",
+      "path": "typemerger/2.1.1",
+      "hashPath": "typemerger.2.1.1.nupkg.sha512"
     },
     "ModeTour.Commons/1.0.0": {
       "type": "project",

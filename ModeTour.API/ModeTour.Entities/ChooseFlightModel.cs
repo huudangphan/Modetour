@@ -10,8 +10,8 @@ namespace ModeTour.Entities
     }
     public class ChooseFlightModelx
     {
-        public UserModel user { get; set; }
         public SearchRule3RQModel rule { get; set; }
         public SearchFareAvailSimpleRQModel searchFare { get; set; }
+        //public SearchFareAvailSimpleRSModel.NewPaxFareGroupModel FXL { get; set; }
     }
 }
