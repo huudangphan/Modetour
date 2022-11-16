@@ -1,50 +1,50 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class AirportDSModel
     {
         /// <summary>
         /// 공항코드
         /// </summary>
-        public String AirportCode { get; set; }
+        public string AirportCode { get; set; }
 
         /// <summary>
         /// 공항명(영문)
         /// </summary>
-        public String AirportName { get; set; }
+        public string AirportName { get; set; }
 
         /// <summary>
         /// 공항명2(상세)
         /// </summary>
-        public String AirportName2 { get; set; }
+        public string AirportName2 { get; set; }
 
         /// <summary>
         /// 공항명(한글)
         /// </summary>
-        public String AirportKorName { get; set; }
+        public string AirportKorName { get; set; }
 
         /// <summary>
         /// 도시코드
         /// </summary>
-        public String CityCode { get; set; }
+        public string CityCode { get; set; }
 
         /// <summary>
         /// 도시명(영문)
         /// </summary>
-        public String CityName { get; set; }
+        public string CityName { get; set; }
 
         /// <summary>
         /// 도시명(한글)
         /// </summary>
-        public String CityKorName { get; set; }
+        public string CityKorName { get; set; }
 
         /// <summary>
         /// 국가코드
         /// </summary>
-        public String NationCode { get; set; }
+        public string NationCode { get; set; }
 
         /// <summary>
         /// 지역코드
         /// </summary>
-        public String AreaCode { get; set; }
+        public string AreaCode { get; set; }
     }
 }

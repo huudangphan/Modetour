@@ -308,6 +308,7 @@ namespace ModeTour.Commons.Helper
                 }
                 else
                 {
+                    client.Timeout = 5000;
                     client.Send(_message);   //메일 전송!
                     if (_savehistory) SaveLogDB();  //전송 전 DB에 이력 저장
                     _result.Code = "99";

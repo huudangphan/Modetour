@@ -1,6 +1,6 @@
-﻿using static ModeTour.Entity.SearchFareAvailSimpleRSModel;
+﻿using static ModeTour.Entities.Air.SearchFareAvailSimpleRSModel;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     public class ChooseFlightModel
     {

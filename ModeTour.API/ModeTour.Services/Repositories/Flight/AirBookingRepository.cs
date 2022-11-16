@@ -1,13 +1,14 @@
 ﻿using Modetour.Services.Interfaces.Flight;
 using ModeTour.Commons;
 using ModeTour.Commons.Helper;
-using ModeTour.Entities;
-using ModeTour.Entity;
+using ModeTour.Entities.Air;
 using ModeTour.Services;
 using ModeTour.Services.Repositories;
+using System.Collections;
 using System.Data;
 using System.Xml;
-using static ModeTour.Entity.SearchFareAvailSimpleRSModel;
+using static ModeTour.Commons.Enums;
+using static ModeTour.Entities.Air.SearchFareAvailSimpleRSModel;
 
 namespace Modetour.Services.Repositories.Flight
 {
@@ -656,7 +657,94 @@ namespace Modetour.Services.Repositories.Flight
         {
             try
             {
+                var count = model.occupantInformation.Count;
+                string[] _PID, _PTC, _PTL, _PHN, _PSN, _PFN, _PBD, _PTN, _PMN, _PEA, _PMC, _PMT, _PMR, _PAI;
+                _PID = _PTC = _PTL = _PHN = _PSN = _PFN = _PBD = _PTN = _PMN = _PEA = _PMC = _PMT = _PMR = _PAI = new string[count];
+                ArrayList passportInfo = new ArrayList();
+                for (int i = 0; i < model.occupantInformation.Count; i++)
+                {
+                    _PTC[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PTC));
+                    _PTL[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PTl));
+                    _PHN[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PHN));
+                    _PSN[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PSN));
+                    _PFN[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PFN));
+                    _PBD[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PDB));
+                    _PTN[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PMN));
+                    _PMN[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PMN));
+                    _PEA[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PTC));
+                    _PMC[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PMC));
+                    _PMT[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PMT));
+                    _PMR[i] = (CodeHelper.Base64Decoding(model.occupantInformation[i].PMR));
+                    passportInfo.Add(model.occupantInformation[i].PassportNum + "|" + model.occupantInformation[i].ExpireDate + "|" + model.occupantInformation[i].IssueCountry + "|" + model.occupantInformation[i].HolderNationality);
+                }
+                var _passportInfo = string.Join(",", passportInfo.ToArray());
+                var _fxl = "";
+                if (model.AgentNo == 81202)
+                {
+                    _fxl = CodeHelper.ConvertToFXL(System.Net.WebUtility.HtmlDecode(model.FXL), Functions.ToString(model.FREF), Functions.ToString(model.FGID));
+                }
+                else
+                {
+                    _fxl = System.Net.WebUtility.HtmlDecode(model.FXL);
+                }
 
+                AddBookingRQModel request = new AddBookingRQModel()
+                {
+                    RID = "0",
+                    RTL = model.RTL,
+                    RHN = model.RHN,
+                    RSN = model.RSN,
+                    RFN = model.RFN,
+                    RDB = model.RDB,
+                    RGD = model.RGD == "MR" ? "M" : "F",
+                    RLF = model.RLF,
+                    RTN = model.RTN,
+                    RMN = model.RMN,
+                    REA = model.REA,
+                    // Passenger
+                    PID = Enumerable.Repeat("0", _PTC.Length).ToArray(),
+                    PTC = _PTC,
+                    PTL = _PTL,
+                    PHN = _PHN,
+                    PSN = _PSN,
+                    PFN = _PFN,
+                    PBD = _PBD,
+                    PTN = _PTN,
+                    PMN = _PMN,
+                    PEA = _PEA,
+                    PMC = _PMC,
+                    PMT = _PMT,
+                    PMR = _PMR,
+                    PAI = CodeHelper.SplitArray(_passportInfo),
+
+                    RMK = String.Empty,
+                    RQT = "WEB",
+                    RQU = "",
+                    SNM = model.SNM,
+                    ANM = model.ANM,
+                    AEN = "0",
+                    ROT = Functions.ToString(model.ROT),
+                    AKY = Functions.ToString(model.AKY),
+                    FXL = _fxl,
+                    SXL = Functions.ToString(model.SXl),
+                    RXL = Functions.ToString(model.RXl),
+                    OPN = String.Empty,
+                    DXL = String.Empty,
+                    FTX = String.Empty,
+                    COOKIE = String.Empty
+                };
+                Int64 oderNo, userPtId;
+                oderNo = userPtId = 0;
+                ResultModel response = new ResultModel();
+                if (!CreateOrder(request, ref response, ref oderNo, ref userPtId))
+                {
+                    return new HttpResult()
+                    {
+                        messageCode = MessageCode.Error,
+                        content = response.Msg,
+                        message = ""
+                    };
+                }
                 return new HttpResult()
                 {
                     messageCode = MessageCode.Success,
@@ -674,6 +762,112 @@ namespace Modetour.Services.Repositories.Flight
                     message = Functions.ToString(ex.Message)
                 };
             }
+        }
+        private bool CreateOrder(AddBookingRQModel request, ref ResultModel response, ref Int64 OID, ref Int64 PID)
+        {
+            bool result = false;
+            try
+            {
+                var tmp = APIHelper.PostData(request, GlobalData.baseUrlService + "AddBooking2RS");
+                response = APIHelper.ConvertJsonToObjectx(Functions.ToString(tmp));
+                if (response.Code.Equals("200"))
+                {
+                    result = true;
+                    response.Msg = "예약이 완료되었습니다.";
+                    OID = (response.Data as AddBookingRSModel).BookingInfo.OrderNo;
+                    PID = (response.Data as AddBookingRSModel).Order.RID;
+                    MailHelper mh = new MailHelper();
+                    mh.FromName = "모두투어";
+                    mh.FromAddress = "mailsender@modetour.com";
+                    mh.Subject = "[모두투어] 항공권 예약이 정상처리 되었습니다.";
+                    //mh.BodyURL = string.Format("http://www.modetour.com/LiveBooking/Popup/Air/AirBookingEndMail.aspx?OID={0}&PID={1}&ReDomain={2}", OID, PID, string.Format("{0}://{1}", "http", "www.modetour.com"));
+                    mh.ToAddress = Convert.ToString(request.RHN) + "<" + Convert.ToString(request.REA) + ">"; // 김ㅇㅇ<kim@naver.com>
+                    mh.IsHistoryInDB = true;
+                    mh.EmailSend();
+                }
+            }
+            catch (Exception)
+            {
+                result = false;
+                throw;
+            }
+            return result;
+        }
+
+        public void AirBookingEndMail(int OID, int PID, string reDomain)
+        {
+
+            XmlNode BookingInfo;
+            XmlNode FlightInfo;
+            XmlNode TravelerInfo;
+            XmlNode FareInfo;
+            XmlNode Attn;
+            XmlNode Agent;
+            XmlNode PaymentInfo;
+            XmlElement XmlRule;
+            if (string.IsNullOrEmpty(reDomain))
+                reDomain = "http://www.modetour.com";
+            if (reDomain.IndexOf("http") < 0) reDomain = "http://" + reDomain;
+            if (OID > 0 && PID > 0)
+            {
+                XmlElement xmlBook = BookingData(OID, PID);
+                if (xmlBook != null)
+                {
+                    if (xmlBook.SelectSingleNode("/ErrorMessage") != null)
+                    {
+
+                        xmlBook.SelectSingleNode("/ErrorMessage/errorMessageText/description");
+
+                    }
+                    else
+                    {
+
+                        BookingInfo = xmlBook.SelectSingleNode("/ResponseDetails/bookingInfo");
+                        FlightInfo = xmlBook.SelectSingleNode("/ResponseDetails/flightInfo");
+                        TravelerInfo = xmlBook.SelectSingleNode("/ResponseDetails/travellerInfo");
+                        FareInfo = xmlBook.SelectSingleNode("/ResponseDetails/fareInfo");
+                        Attn = xmlBook.SelectSingleNode("/ResponseDetails/attn");
+                        Agent = xmlBook.SelectSingleNode("/ResponseDetails/agent");
+                        PaymentInfo = xmlBook.SelectSingleNode("/ResponseDetails/paymentInfo");
+
+                        //룰아이디
+                        //RuleID = BookingInfo.SelectSingleNode("bookingRuleId").InnerText;
+                        //SetBookingInfo();
+
+                    }
+                }
+            }
+        }
+
+        public XmlElement BookingData(int OID, int PID)
+        {
+            XmlDocument XmlDoc = new XmlDocument();
+            XmlElement XmlEle = null;
+            string FlightServerURL = "https://airservice2.modetour.com";
+            try
+            {
+                APIHelper api = new APIHelper();
+
+                api.Url = FlightServerURL + "/AirService.asmx/";
+                api.Method = "SearchBookingRS";
+                api.Data = String.Format("OID={0}&PID={1}&RIP={2}", OID, PID, "");
+                api.RequestType = APIRequestType.POST;
+                api.EncodingType = APIEncodingType.UTF8;
+                api.Call();
+
+                if (api.Result.Code == "0")
+                {
+                    XmlDoc.LoadXml(api.Result.Data.ToString());
+                    XmlEle = XmlDoc.DocumentElement;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return XmlEle;
         }
     }
 

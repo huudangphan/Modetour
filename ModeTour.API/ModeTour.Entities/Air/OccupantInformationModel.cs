@@ -1,4 +1,6 @@
-﻿namespace ModeTour.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ModeTour.Entities.Air
 {
     public class OccupantInformationModel
     {
@@ -42,6 +44,29 @@
         /// Does the passenger claim to earn travel mileage?
         /// </summary>
         public string PMR { get; set; }
+        /// <summary>
+        /// 여권번호
+        /// </summary>
+        [Required]
+        public String[] PassportNum { get; set; }
+
+        /// <summary>
+        /// 여권만료일
+        /// </summary>
+        [Required]
+        public String[] ExpireDate { get; set; }
+
+        /// <summary>
+        /// 여권발행국
+        /// </summary>
+        [Required]
+        public String[] IssueCountry { get; set; }
+
+        /// <summary>
+        /// 국적
+        /// </summary>
+        [Required]
+        public String[] HolderNationality { get; set; }
 
     }
 }

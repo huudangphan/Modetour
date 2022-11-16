@@ -1,5 +1,5 @@
 ﻿using ModeTour.Commons;
-using ModeTour.Entities;
+using ModeTour.Entities.Air;
 
 namespace Modetour.Services.Interfaces.Flight
 {
@@ -16,6 +16,7 @@ namespace Modetour.Services.Interfaces.Flight
         public HttpResult GetCoupon(ChooseFlightModelx model, string userId);
         public HttpResult CheckFare(CheckSelectFareRQModel model);
         public HttpResult Booking(BookingRequestModel model);
+        public void AirBookingEndMail(int OID, int PID, string reDomain);
 
     }
 }

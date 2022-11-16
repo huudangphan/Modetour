@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     public class SearchRule3RQModel
     {

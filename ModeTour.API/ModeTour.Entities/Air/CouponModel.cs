@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     public class CouponModel
     {
@@ -32,7 +32,7 @@ namespace ModeTour.Entities
         /// 할인 번호
         /// </summary> --discount number
         [XmlElement(ElementName = "dcNumber")]
-        public Int64 DcNum { set; get; }
+        public long DcNum { set; get; }
 
         /// <summary>
         /// 쿠폰 번호

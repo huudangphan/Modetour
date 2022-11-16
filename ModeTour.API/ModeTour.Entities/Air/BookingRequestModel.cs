@@ -1,4 +1,4 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class BookingRequestModel
     {
@@ -73,6 +73,9 @@
         /// Segment(OW: one-way, RT: round trip, DT: two-way to and from, MD: multiple segments)
         /// </summary>
         public string ROT { get; set; }
+        public int AgentNo { get; set; }
+        public string FREF { get; set; }
+        public string FGID { get; set; }
         public List<OccupantInformationModel> occupantInformation { get; set; }
     }
 }

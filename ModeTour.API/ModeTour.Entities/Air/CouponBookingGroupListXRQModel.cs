@@ -1,4 +1,4 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class CouponBookingGroupListXRQModel
     {
@@ -34,9 +34,9 @@
 
             public string ItemCode { get; set; }
 
-            public Int64 Price { get; set; }
+            public long Price { get; set; }
 
-            public Int64 Gross { get; set; }
+            public long Gross { get; set; }
 
             public DateTime DepartureDate { get; set; }
 

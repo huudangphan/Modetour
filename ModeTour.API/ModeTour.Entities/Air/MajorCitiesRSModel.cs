@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     [Serializable]
     [XmlRoot(ElementName = "MajorCities")]
@@ -90,7 +90,7 @@ namespace ModeTour.Entities
         /// 도시(공항)명
         /// </summary>
         [XmlText]
-        public String TXT { get; set; }
+        public string TXT { get; set; }
     }
 
 }

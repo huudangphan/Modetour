@@ -1,4 +1,4 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class GetNoticeDSModel
     {
@@ -12,12 +12,12 @@
         /// <summary>
         /// 작성자
         /// </summary>
-        public String Writer { get; set; }
+        public string Writer { get; set; }
 
         /// <summary>
         /// 제목
         /// </summary>
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// 조회수
@@ -32,6 +32,6 @@
         /// <summary>
         /// 공지
         /// </summary>
-        public String Notice { get; set; }
+        public string Notice { get; set; }
     }
 }

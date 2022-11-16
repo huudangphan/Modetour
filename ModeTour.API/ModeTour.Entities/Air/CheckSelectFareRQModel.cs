@@ -1,8 +1,8 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class CheckSelectFareRQModel
     {
-        public Int64 SNM { get; set; }
+        public long SNM { get; set; }
 
         public string FXL { get; set; }
 

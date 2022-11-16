@@ -1,4 +1,4 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class CodeModel
     {

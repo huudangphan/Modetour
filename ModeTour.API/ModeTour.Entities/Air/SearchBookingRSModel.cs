@@ -1,17 +1,16 @@
-﻿using ModeTour.Entity;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     [Serializable]
     [XmlRoot(ElementName = "ResponseDetails")]
     public class SearchBookingRSModel
     {
         [XmlAttribute(AttributeName = "version")]
-        public String Version { get; set; }
+        public string Version { get; set; }
 
         [XmlAttribute(AttributeName = "timeStamp")]
-        public String TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
 
         /// <summary>
         /// 예약 기본 정보
@@ -83,7 +82,7 @@ namespace ModeTour.Entities
         /// Vendor 약자
         /// </summary>
         [XmlElement(ElementName = "gds")]
-        public String GDS { get; set; }
+        public string GDS { get; set; }
 
         /// <summary>
         /// Vendor 예약번호
@@ -95,7 +94,7 @@ namespace ModeTour.Entities
         /// 모두투어 예약번호
         /// </summary>
         [XmlElement(ElementName = "modeBookingNo")]
-        public Int64 ModeBookingno { get; set; }
+        public long ModeBookingno { get; set; }
 
         string AgentBookingNo = "";
         /// <summary>
@@ -115,7 +114,7 @@ namespace ModeTour.Entities
         /// 예약일시
         /// </summary>
         [XmlElement(ElementName = "bookingCreationDate")]
-        public String CreationDate { get; set; }
+        public string CreationDate { get; set; }
 
         /// <summary>
         /// 예약상태
@@ -179,10 +178,10 @@ namespace ModeTour.Entities
         /// Y|N|EMPTY(N)
         /// </summary>
         [XmlAttribute(AttributeName = "proof")]
-        public String NeedYN { get; set; }
+        public string NeedYN { get; set; }
 
         [XmlText]
-        public String RuleId { get; set; }
+        public string RuleId { get; set; }
     }
 
     public class BookingNo
@@ -191,13 +190,13 @@ namespace ModeTour.Entities
         /// 알파벳 형태의 PNR
         /// </summary>
         [XmlAttribute(AttributeName = "pnr")]
-        public String PNR { get; set; }
+        public string PNR { get; set; }
 
         /// <summary>
         /// 숫자 형태의 PNR
         /// </summary>
         [XmlText]
-        public String PNRNumber { get; set; }
+        public string PNRNumber { get; set; }
 
     }
 
@@ -207,55 +206,55 @@ namespace ModeTour.Entities
         /// 예약상태코드(HK:확약, HL:대기, TK:스케쥴변경, UC:불가, XX:취소)
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 2018.08.31 여권정보등록여부
         /// </summary>
         [XmlAttribute(AttributeName = "passport")]
-        public String PassportYN { get; set; }
+        public string PassportYN { get; set; }
 
         /// <summary>
         /// 아피스입력여부
         /// </summary>
         [XmlAttribute(AttributeName = "apis")]
-        public String Apis { get; set; }
+        public string Apis { get; set; }
 
         /// <summary>
         /// 발권완료여부
         /// </summary>
         [XmlAttribute(AttributeName = "issue")]
-        public String Issue { get; set; }
+        public string Issue { get; set; }
 
         /// <summary>
         /// ESTA 비자 신청 가능여부(Y|N)
         /// </summary>
         [XmlAttribute(AttributeName = "esta")]
-        public String Esta { get; set; }
+        public string Esta { get; set; }
 
         /// <summary>
         /// 캐나다 ETA 비자 신청 가능여부(Y|N)
         /// </summary>
         [XmlAttribute(AttributeName = "eta")]
-        public String Eta { get; set; }
+        public string Eta { get; set; }
 
         /// <summary>
         /// 환불 여부(W:전체, P:부분, 공백:환불없음)
         /// </summary>
         [XmlAttribute(AttributeName = "refund")]
-        public String Refund { get; set; }
+        public string Refund { get; set; }
 
         /// <summary>
         /// 미주/캐나다 여부(Y|N)
         /// </summary>
         [XmlAttribute(AttributeName = "usa")]
-        public String USA { get; set; }
+        public string USA { get; set; }
 
         /// <summary>
         /// 예약상태설명
         /// </summary>
         [XmlText]
-        public String Status { get; set; }
+        public string Status { get; set; }
     }
 
     public class BookingClass
@@ -264,13 +263,13 @@ namespace ModeTour.Entities
         /// 좌석코드(Y:일반석, C:비즈니스석, F:일등석) 
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 좌석설명
         /// </summary>
         [XmlText]
-        public String Class { get; set; }
+        public string Class { get; set; }
     }
 
     public class BookingAirLine
@@ -279,13 +278,13 @@ namespace ModeTour.Entities
         /// 항공사코드
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 항공사명
         /// </summary>
         [XmlText]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 
     public class BookingRtg
@@ -294,19 +293,19 @@ namespace ModeTour.Entities
         /// 여정타입코드(OW:편도, RT:왕복, DT:출도착이원구간, MD:다구간)
         /// </summary>
         [XmlAttribute(AttributeName = "type")]
-        public String Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// 여정코드
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 여정정보
         /// </summary>
         [XmlText]
-        public String Explain { get; set; }
+        public string Explain { get; set; }
     }
 
     public class BookingPaxType
@@ -315,25 +314,25 @@ namespace ModeTour.Entities
         /// 승객유형코드
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 프로모션카드명(프로모션카드인 경우만 표시 아닌경우는 "")
         /// </summary>
         [XmlAttribute(AttributeName = "card")]
-        public String Card { get; set; }
+        public string Card { get; set; }
 
         /// <summary>
         /// 프로모션 표시코드
         /// </summary>
         [XmlAttribute(AttributeName = "sign")]
-        public String Sign { get; set; }
+        public string Sign { get; set; }
 
         /// <summary>
         /// 승객유형설명
         /// </summary>
         [XmlText]
-        public String Explain { get; set; }
+        public string Explain { get; set; }
     }
 
     public class BookingExpiryDate
@@ -342,13 +341,13 @@ namespace ModeTour.Entities
         /// 기간코드
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         /// 유효기간
         /// </summary>
         [XmlText]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class BookingTL
@@ -357,13 +356,13 @@ namespace ModeTour.Entities
         /// 항공사의 TL
         /// </summary>
         [XmlAttribute(AttributeName = "ttl")]
-        public String TTL { get; set; }
+        public string TTL { get; set; }
 
         /// <summary>
         /// 최종발권시한(모두투어 TL)
         /// </summary>
         [XmlText]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class BookingAmount
@@ -372,80 +371,80 @@ namespace ModeTour.Entities
         /// 항공판매가 합계(@fare + @tax + @fsc + @tasf)
         /// </summary>
         [XmlAttribute(AttributeName = "price")]
-        public Int64 Price { get; set; }
+        public long Price { get; set; }
 
         /// <summary>
         /// 2017-05-19 이권태
         /// </summary>
         [XmlAttribute(AttributeName = "subPrice")]
-        public Int64 subPrice { get; set; }
+        public long subPrice { get; set; }
 
 
         /// <summary>
         /// 항공요금 합계
         /// </summary>
         [XmlAttribute(AttributeName = "fare")]
-        public Int64 Fare { get; set; }
+        public long Fare { get; set; }
 
         /// <summary>
         /// TAX 합계
         /// </summary>
         [XmlAttribute(AttributeName = "tax")]
-        public Int64 Tax { get; set; }
+        public long Tax { get; set; }
 
         /// <summary>
         /// 유류할증료 합계
         /// </summary>
         [XmlAttribute(AttributeName = "fsc")]
-        public Int64 Fsc { get; set; }
+        public long Fsc { get; set; }
 
         /// <summary>
         /// 파트너 할인요금 합계
         /// </summary>
         [XmlAttribute(AttributeName = "disPartner")]
-        public String DisPartner { get; set; }
+        public string DisPartner { get; set; }
 
         /// <summary>
         /// TASF(발권 여행사 수수료)
         /// </summary>
         [XmlAttribute(AttributeName = "tasf")]
-        public Int64 Tasf { get; set; }
+        public long Tasf { get; set; }
 
         /// <summary>
         /// 부가서비스요금 합계
         /// </summary>
         [XmlAttribute(AttributeName = "supplementaryService")]
-        public String SupplementaryService { get; set; }
+        public string SupplementaryService { get; set; }
 
         /// <summary>
         /// 미확정 운임 여부
         /// </summary>
         [XmlAttribute(AttributeName = "ucf")]
-        public String Ucf { get; set; }
+        public string Ucf { get; set; }
 
         /// <summary>
         /// 자동 발권 불가 운임 여부
         /// </summary>
         [XmlAttribute(AttributeName = "ntf")]
-        public String Ntf { get; set; }
+        public string Ntf { get; set; }
 
         /// <summary>
         /// 텍스/유류할증료 자동 업데이트 여부
         /// </summary>
         [XmlAttribute(AttributeName = "tau")]
-        public String Tau { get; set; }
+        public string Tau { get; set; }
 
         /// <summary>
         /// 텍스/유류할증료 자동 업데이트 일시
         /// </summary>
         [XmlAttribute(AttributeName = "taud")]
-        public String Taud { get; set; }
+        public string Taud { get; set; }
 
         /// <summary>
         /// 2017-05-19 추가 이권태
         /// </summary>
         [XmlAttribute(AttributeName = "pcs")]
-        public String Pcs { get; set; }
+        public string Pcs { get; set; }
 
         /// <summary>
         /// 스마일클럽여부
@@ -480,13 +479,13 @@ namespace ModeTour.Entities
         /// 현지연락처
         /// </summary>
         [XmlElement(ElementName = "tel")]
-        public String Tel { get; set; }
+        public string Tel { get; set; }
 
         /// <summary>
         /// 현지주소
         /// </summary>
         [XmlElement(ElementName = "address")]
-        public String Address { get; set; }
+        public string Address { get; set; }
     }
     #region 탑승객 정보
     [XmlType("paxData")]
@@ -576,84 +575,84 @@ namespace ModeTour.Entities
         /// 참조번호
         /// </summary>
         [XmlAttribute(AttributeName = "ref")]
-        public Int16 REF { get; set; }
+        public short REF { get; set; }
 
         /// <summary>
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public String NSI { get; set; }
+        public string NSI { get; set; }
 
         /// <summary>
         /// 탑승객 PTID
         /// </summary>
         [XmlAttribute(AttributeName = "pid")]
-        public String PID { get; set; }
+        public string PID { get; set; }
         /// <summary>
         /// 탑승객 한글이름
         /// </summary>
         [XmlAttribute(AttributeName = "phn")]
-        public String PHN { get; set; }
+        public string PHN { get; set; }
 
         /// <summary>
         /// 탑승객 영문성
         /// </summary>
         [XmlAttribute(AttributeName = "psn")]
-        public String PSN { get; set; }
+        public string PSN { get; set; }
 
         /// <summary>
         /// 탑승객 영문이름
         /// </summary>
         [XmlAttribute(AttributeName = "pfn")]
-        public String PFN { get; set; }
+        public string PFN { get; set; }
 
         /// <summary>
         /// 탑승객 유형(ADT/CHD/INF)
         /// </summary>
         [XmlAttribute(AttributeName = "ptc")]
-        public String PTC { get; set; }
+        public string PTC { get; set; }
 
         /// <summary>
         /// 탑승객 타이틀(MR/MRS/MS/MSTR/MISS)
         /// </summary>
         [XmlAttribute(AttributeName = "ptl")]
-        public String PTL { get; set; }
+        public string PTL { get; set; }
 
         /// <summary>
         /// 탑승객 생년월일
         /// </summary>
         [XmlAttribute(AttributeName = "pbd")]
-        public String PBD { get; set; }
+        public string PBD { get; set; }
 
         /// <summary>
         /// 탑승객 이메일
         /// </summary>
         [XmlAttribute(AttributeName = "pea")]
-        public String PEA { get; set; }
+        public string PEA { get; set; }
 
         /// <summary>
         /// 탑승객 전화번호
         /// </summary>
         [XmlAttribute(AttributeName = "ptn")]
-        public String PTN { get; set; }
+        public string PTN { get; set; }
 
         /// <summary>
         /// 탑승객 휴대폰번호
         /// </summary>
         [XmlAttribute(AttributeName = "pmn")]
-        public String PMN { get; set; }
+        public string PMN { get; set; }
 
         /// <summary>
         /// 보호자 참조번호(유아일 경우)
         /// </summary>
         [XmlAttribute(AttributeName = "gni")]
-        public String GNI { get; set; }
+        public string GNI { get; set; }
 
         /// <summary>
         /// 2017-05-19 추가 이권태
         /// </summary>
         [XmlAttribute(AttributeName = "cancel")]
-        public String Cancel { get; set; }
+        public string Cancel { get; set; }
     }
 
     public class PaxFareModel
@@ -662,49 +661,49 @@ namespace ModeTour.Entities
         /// 항공판매가
         /// </summary>
         [XmlAttribute(AttributeName = "price")]
-        public String Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         /// 2017-05-19 추가 이권태
         /// </summary>
         [XmlAttribute(AttributeName = "subPrice")]
-        public String subPrice { get; set; }
+        public string subPrice { get; set; }
 
         /// <summary>
         /// 항공요금
         /// </summary>
         [XmlAttribute(AttributeName = "fare")]
-        public String Fare { get; set; }
+        public string Fare { get; set; }
 
         /// <summary>
         /// TAX
         /// </summary>
         [XmlAttribute(AttributeName = "tax")]
-        public String Tax { get; set; }
+        public string Tax { get; set; }
 
         /// <summary>
         /// 유류할증료
         /// </summary>
         [XmlAttribute(AttributeName = "fsc")]
-        public String Fsc { get; set; }
+        public string Fsc { get; set; }
 
         /// <summary>
         /// 파트너 할인요금
         /// </summary>
         [XmlAttribute(AttributeName = "disPartner")]
-        public String DisPartner { get; set; }
+        public string DisPartner { get; set; }
 
         /// <summary>
         /// 2017-05-19 추가 이권태
         /// </summary>
         [XmlAttribute(AttributeName = "tasf")]
-        public String Tasf { get; set; }
+        public string Tasf { get; set; }
 
         /// <summary>
         /// 투어마일리지
         /// </summary>
         [XmlAttribute(AttributeName = "tourMileage")]
-        public String TourMileage { get; set; }
+        public string TourMileage { get; set; }
 
     }
 
@@ -714,31 +713,31 @@ namespace ModeTour.Entities
         /// 총결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public String Gross { get; set; }
+        public string Gross { get; set; }
 
         /// <summary>
         /// 카드결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "card")]
-        public String Card { get; set; }
+        public string Card { get; set; }
 
         /// <summary>
         /// 계좌이체금액
         /// </summary>
         [XmlAttribute(AttributeName = "bank")]
-        public String Bank { get; set; }
+        public string Bank { get; set; }
 
         /// <summary>
         /// 미결제금액(잔액)
         /// </summary>
         [XmlAttribute(AttributeName = "balance")]
-        public String Balance { get; set; }
+        public string Balance { get; set; }
 
         /// <summary>
         /// 결제일
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class PaxPassportModel
@@ -747,31 +746,31 @@ namespace ModeTour.Entities
         /// 여권번호
         /// </summary>
         [XmlAttribute(AttributeName = "id")]
-        public String ID { get; set; }
+        public string ID { get; set; }
 
         /// <summary>
         /// 여권만료일
         /// </summary>
         [XmlAttribute(AttributeName = "expireDate")]
-        public String ExpireDate { get; set; }
+        public string ExpireDate { get; set; }
 
         /// <summary>
         /// 여권발행국(국가코드)
         /// </summary>
         [XmlAttribute(AttributeName = "issueCountry")]
-        public String IssueCountry { get; set; }
+        public string IssueCountry { get; set; }
 
         /// <summary>
         /// 국적(국가코드) 
         /// </summary>
         [XmlAttribute(AttributeName = "holderNationality")]
-        public String HolderNationality { get; set; }
+        public string HolderNationality { get; set; }
 
         /// <summary>
         /// 작성일
         /// </summary>
         [XmlAttribute(AttributeName = "writeDate")]
-        public String WriteDate { get; set; }
+        public string WriteDate { get; set; }
     }
 
     public class PaxTicketModel
@@ -780,7 +779,7 @@ namespace ModeTour.Entities
         /// 티켓번호
         /// </summary>
         [XmlAttribute(AttributeName = "number")]
-        public String Number { get; set; }
+        public string Number { get; set; }
     }
 
     public class PaxMembershipModel
@@ -789,13 +788,13 @@ namespace ModeTour.Entities
         /// 마일리지 회원번호
         /// </summary>
         [XmlAttribute(AttributeName = "number")]
-        public String Number { get; set; }
+        public string Number { get; set; }
 
         /// <summary>
         /// 마일리지 항공사코드
         /// </summary>
         [XmlAttribute(AttributeName = "carrier")]
-        public String Carrier { get; set; }
+        public string Carrier { get; set; }
     }
 
     public class TourMileageModel
@@ -804,25 +803,25 @@ namespace ModeTour.Entities
         /// 회원구분(01:정회원, 02:웹회원, 03:투어마일리지회원)
         /// </summary>
         [XmlAttribute(AttributeName = "memberClass")]
-        public String MemberClass { get; set; }
+        public string MemberClass { get; set; }
 
         /// <summary>
         /// 투어마일리지 카드번호
         /// </summary>
         [XmlAttribute(AttributeName = "cardNumber")]
-        public String CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// 투어마일리지 적립 요청여부 {Y|N}
         /// </summary>
         [XmlAttribute(AttributeName = "request")]
-        public String Request { get; set; }
+        public string Request { get; set; }
 
         /// <summary>
         /// 적립예정 투어마일리지
         /// </summary>
         [XmlAttribute(AttributeName = "mileage")]
-        public String Mileage { get; set; }
+        public string Mileage { get; set; }
     }
 
     #endregion
@@ -836,43 +835,43 @@ namespace ModeTour.Entities
         /// Passenger Type
         /// </summary>
         [XmlAttribute(AttributeName = "ptc")]
-        public String PTC { get; set; }
+        public string PTC { get; set; }
 
         /// <summary>
         /// 항공판매가1(disFare + tax + fsc)
         /// </summary>
         [XmlAttribute(AttributeName = "price")]
-        public String Price { get; set; }
+        public string Price { get; set; }
 
         /// <summary>
         /// 항공판매가2(fare + tax + fsc)
         /// </summary>
         [XmlAttribute(AttributeName = "amount")]
-        public String Amount { get; set; }
+        public string Amount { get; set; }
 
         /// <summary>
         /// 항공요금
         /// </summary>
         [XmlAttribute(AttributeName = "fare")]
-        public String Fare { get; set; }
+        public string Fare { get; set; }
 
         /// <summary>
         /// 항공할인요금
         /// </summary>
         [XmlAttribute(AttributeName = "disFare")]
-        public String DisFare { get; set; }
+        public string DisFare { get; set; }
 
         /// <summary>
         /// 제세공과금
         /// </summary>
         [XmlAttribute(AttributeName = "tax")]
-        public String Tax { get; set; }
+        public string Tax { get; set; }
 
         /// <summary>
         /// 유류할증료
         /// </summary>
         [XmlAttribute(AttributeName = "fsc")]
-        public String Fsc { get; set; }
+        public string Fsc { get; set; }
 
         /// <summary>
         /// 발권수수료
@@ -885,13 +884,13 @@ namespace ModeTour.Entities
         /// Fare Basis
         /// </summary>
         [XmlAttribute(AttributeName = "basis")]
-        public String Basis { get; set; }
+        public string Basis { get; set; }
 
         /// <summary>
         /// Ticket Designator
         /// </summary>
         [XmlAttribute(AttributeName = "tkd")]
-        public String TKD { get; set; }
+        public string TKD { get; set; }
 
         /// <summary>
         /// Segment
@@ -904,13 +903,13 @@ namespace ModeTour.Entities
     {
         //참조번호
         [XmlAttribute(AttributeName = "ref")]
-        public String REF { get; set; }
+        public string REF { get; set; }
 
         /// <summary>
         /// 무료수하물
         /// </summary>
         [XmlAttribute(AttributeName = "baggage")]
-        public String Baggage { get; set; }
+        public string Baggage { get; set; }
     }
 
     #endregion
@@ -934,25 +933,25 @@ namespace ModeTour.Entities
         /// 서비스번호 
         /// </summary>
         [XmlAttribute(AttributeName = "code")]
-        public Int16 Code { set; get; }
+        public short Code { set; get; }
 
         /// <summary>
         /// 주문아이템번호
         /// </summary>
         [XmlAttribute(AttributeName = "ibn")]
-        public Int64 Ibn { set; get; }
+        public long Ibn { set; get; }
 
         /// <summary>
         /// 예약상태코드(HK:예약완료, XX:취소)
         /// </summary>
         [XmlAttribute(AttributeName = "status")]
-        public String Status { set; get; }
+        public string Status { set; get; }
 
         /// <summary>
         /// 규정명칭
         /// </summary>
         [XmlElement(ElementName = "name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 서비스요금
@@ -964,13 +963,13 @@ namespace ModeTour.Entities
         /// 서비스요약
         /// </summary>
         [XmlElement(ElementName = "summary")]
-        public String Summary { get; set; }
+        public string Summary { get; set; }
 
         /// <summary>
         /// 서비스설명
         /// </summary>
         [XmlElement(ElementName = "description")]
-        public String Description { get; set; }
+        public string Description { get; set; }
     }
 
     public class ServicePriceModel
@@ -979,31 +978,31 @@ namespace ModeTour.Entities
         /// 판매가(1인)(@cost - @discount)
         /// </summary>
         [XmlAttribute(AttributeName = "amount")]
-        public Int64 Amount { set; get; }
+        public long Amount { set; get; }
 
         /// <summary>
         /// 원가(1인)
         /// </summary>
         [XmlAttribute(AttributeName = "cost")]
-        public Int64 Cost { set; get; }
+        public long Cost { set; get; }
 
         /// <summary>
         /// 할인금액(1인)
         /// </summary>
         [XmlAttribute(AttributeName = "discount")]
-        public Int64 Discount { set; get; }
+        public long Discount { set; get; }
 
         /// <summary>
         /// 신청수량
         /// </summary>
         [XmlAttribute(AttributeName = "quantity")]
-        public Int64 Quantity { set; get; }
+        public long Quantity { set; get; }
 
         /// <summary>
         /// 총판매가(@amount * @quantity)
         /// </summary>
         [XmlAttribute(AttributeName = "sellingPrice")]
-        public Int64 SellingPrice { set; get; }
+        public long SellingPrice { set; get; }
     }
 
     public class HotLineModel
@@ -1012,25 +1011,25 @@ namespace ModeTour.Entities
         /// 부서명
         /// </summary>
         [XmlElement(ElementName = "department")]
-        public String Department { get; set; }
+        public string Department { get; set; }
 
         /// <summary>
         /// 담당직원명
         /// </summary>
         [XmlElement(ElementName = "incharge")]
-        public String Incharge { get; set; }
+        public string Incharge { get; set; }
 
         /// <summary>
         /// 휴대폰번호
         /// </summary>
         [XmlElement(ElementName = "hp")]
-        public String HP { get; set; }
+        public string HP { get; set; }
 
         /// <summary>
         /// 이메일주소
         /// </summary>
         [XmlElement(ElementName = "email")]
-        public String Email { get; set; }
+        public string Email { get; set; }
     }
 
     #endregion
@@ -1043,49 +1042,49 @@ namespace ModeTour.Entities
         /// 사이트번호
         /// </summary>
         [XmlAttribute(AttributeName = "snm")]
-        public Int64 SNM { get; set; }
+        public long SNM { get; set; }
 
         /// <summary>
         /// 거래처번호
         /// </summary>
         [XmlAttribute(AttributeName = "anm")]
-        public Int64 ANM { get; set; }
+        public long ANM { get; set; }
 
         /// <summary>
         /// 거래처직원번호
         /// </summary>
         [XmlAttribute(AttributeName = "aen")]
-        public Int64 AEN { get; set; }
+        public long AEN { get; set; }
 
         /// <summary>
         /// 거래처명
         /// </summary>
         [XmlElement(ElementName = "company")]
-        public String Company { get; set; }
+        public string Company { get; set; }
 
         /// <summary>
         /// 거래처직원명
         /// </summary>
         [XmlElement(ElementName = "name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 거래처직원 이메일주소
         /// </summary>
         [XmlElement(ElementName = "email")]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// 거래처 전화번호
         /// </summary>
         [XmlElement(ElementName = "tel")]
-        public String Tel { get; set; }
+        public string Tel { get; set; }
 
         /// <summary>
         /// 거래처 팩스번호
         /// </summary>
         [XmlElement(ElementName = "fax")]
-        public String Fax { get; set; }
+        public string Fax { get; set; }
 
         /// <summary>
         /// 제휴거래처 - 2018.02.12 스카이스캐너정보 추가
@@ -1100,7 +1099,7 @@ namespace ModeTour.Entities
         /// 제휴거래처번호
         /// </summary>
         [XmlAttribute(AttributeName = "anm")]
-        public String ShareAnm { get; set; }
+        public string ShareAnm { get; set; }
 
     }
 
@@ -1131,49 +1130,49 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 카드사명
         /// </summary>
         [XmlAttribute(AttributeName = "cardName")]
-        public String CardName { get; set; }
+        public string CardName { get; set; }
 
         /// <summary>
         /// 카드 번호
         /// </summary>
         [XmlAttribute(AttributeName = "cardNumber")]
-        public String CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// 소유자명
         /// </summary>
         [XmlAttribute(AttributeName = "holder")]
-        public String Holder { get; set; }
+        public string Holder { get; set; }
 
         /// <summary>
         /// 유효기간
         /// </summary>
         [XmlAttribute(AttributeName = "validThru")]
-        public String ValidThru { get; set; }
+        public string ValidThru { get; set; }
 
         /// <summary>
         /// 할부개월수
         /// </summary>
         [XmlAttribute(AttributeName = "installment")]
-        public String Installment { get; set; }
+        public string Installment { get; set; }
 
         /// <summary>
         /// 결제일
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
     public class PaymentReqBankModel
     {
@@ -1181,31 +1180,31 @@ namespace ModeTour.Entities
         /// 결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 은행명
         /// </summary>
         [XmlAttribute(AttributeName = "bankName")]
-        public String BankName { get; set; }
+        public string BankName { get; set; }
 
         /// <summary>
         /// 계좌 번호
         /// </summary>
         [XmlAttribute(AttributeName = "accountNumber")]
-        public String AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
         /// <summary>
         /// 예금주
         /// </summary>
         [XmlAttribute(AttributeName = "holder")]
-        public String Holder { get; set; }
+        public string Holder { get; set; }
 
         /// <summary>
         /// 결제일
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
     #endregion
 
@@ -1214,10 +1213,10 @@ namespace ModeTour.Entities
     public class PaymentModel
     {
         [XmlIgnore]
-        public Int64 Card { get; set; }
+        public long Card { get; set; }
 
         [XmlIgnore]
-        public Int64 Cash { get; set; }
+        public long Cash { get; set; }
 
         /// <summary>
         /// 총결제금액
@@ -1278,7 +1277,7 @@ namespace ModeTour.Entities
         /// 휴대폰번호 또는 사업자번호 등
         /// </summary>
         [XmlElement(ElementName = "cashReceipt")]
-        public String CashReceipt { get; set; }
+        public string CashReceipt { get; set; }
 
     }
 
@@ -1288,13 +1287,13 @@ namespace ModeTour.Entities
         /// 발권(결제)요청일
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 총결제금액
         /// </summary>
         [XmlText]
-        public Int64 Price { get; set; }
+        public long Price { get; set; }
     }
 
     public class PaymentCardModel
@@ -1303,43 +1302,43 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 결제일
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 할부개월수
         /// </summary>
         [XmlAttribute(AttributeName = "installment")]
-        public Int16 Installment { get; set; }
+        public short Installment { get; set; }
 
         /// <summary>
         /// 카드사명
         /// </summary>
         [XmlAttribute(AttributeName = "cardName")]
-        public String CardName { get; set; }
+        public string CardName { get; set; }
 
         /// <summary>
         /// 승인번호
         /// </summary>
         [XmlAttribute(AttributeName = "approvalNumber")]
-        public String ApprovalNumber { get; set; }
+        public string ApprovalNumber { get; set; }
 
         /// <summary>
         /// 거래번호
         /// </summary>
         [XmlAttribute(AttributeName = "transactionNumber")]
-        public String TransactionNumber { get; set; }
+        public string TransactionNumber { get; set; }
 
 
     }
@@ -1350,31 +1349,31 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 입금금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 입금일(yyyy-MM-dd HH:mm:ss)
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 입금자
         /// </summary>
         [XmlAttribute(AttributeName = "remitter")]
-        public String Remitter { get; set; }
+        public string Remitter { get; set; }
 
         /// <summary>
         /// 은행명
         /// </summary>
         [XmlAttribute(AttributeName = "bankName")]
-        public String BankName { get; set; }
+        public string BankName { get; set; }
     }
 
     public class PaymentGiftCertificatesModel
@@ -1383,19 +1382,19 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 입금금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 입금일(yyyy-MM-dd HH:mm:ss)
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class PaymentTourMileagesModel
@@ -1404,19 +1403,19 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 마일리지 결제금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 마일리지 적용일(yyyy-MM-dd HH:mm:ss)
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class PaymentCouponsModel
@@ -1425,25 +1424,25 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 쿠폰번호
         /// </summary>
         [XmlAttribute(AttributeName = "number")]
-        public String Number { get; set; }
+        public string Number { get; set; }
 
         /// <summary>
         /// 쿠폰금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 쿠폰적용일(yyyy-MM-dd HH:mm:ss)
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class PaymentEtcsModel
@@ -1452,25 +1451,25 @@ namespace ModeTour.Entities
         /// 판매명세번호
         /// </summary>
         [XmlAttribute(AttributeName = "nsi")]
-        public Int64 NSI { get; set; }
+        public long NSI { get; set; }
 
         /// <summary>
         /// 쿠폰적용일(yyyy-MM-dd HH:mm:ss)
         /// </summary>
         [XmlAttribute(AttributeName = "date")]
-        public String Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 쿠폰금액
         /// </summary>
         [XmlAttribute(AttributeName = "gross")]
-        public Int64 Gross { get; set; }
+        public long Gross { get; set; }
 
         /// <summary>
         /// 쿠폰번호
         /// </summary>
         [XmlAttribute(AttributeName = "item")]
-        public String Item { get; set; }
+        public string Item { get; set; }
     }
 
     public class VirtualAccountNumberModel
@@ -1479,19 +1478,19 @@ namespace ModeTour.Entities
         /// 은행명
         /// </summary>
         [XmlElement(ElementName = "bank")]
-        public String Bank { get; set; }
+        public string Bank { get; set; }
 
         /// <summary>
         /// 계좌번호
         /// </summary>
         [XmlElement(ElementName = "accountNumber")]
-        public String AccountNumber { get; set; }
+        public string AccountNumber { get; set; }
 
         /// <summary>
         /// 예금주
         /// </summary>
         [XmlElement(ElementName = "holder")]
-        public String Holder { get; set; }
+        public string Holder { get; set; }
     }
 
     #endregion
@@ -1502,7 +1501,7 @@ namespace ModeTour.Entities
         /// <summary>
         /// 
         /// </summary>
-        public String Explain { get; set; }
+        public string Explain { get; set; }
 
         [XmlElement(ElementName = "Proof")]
         public List<Proof> proof { get; set; }
@@ -1516,57 +1515,57 @@ namespace ModeTour.Entities
         /// <summary>
         /// 증빙서류번호
         /// </summary>
-        public Int64 FileNo { get; set; }
+        public long FileNo { get; set; }
 
         /// <summary>
         /// 등록일
         /// </summary>
-        public String Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// 제출방법
         /// </summary>
-        public String Kind { get; set; }
+        public string Kind { get; set; }
 
         /// <summary>
         /// 파일명
         /// </summary>
-        public String FileName { get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
         /// 파일경로
         /// </summary>
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
         /// <summary>
         /// 이메일
         /// </summary>
-        public String Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// 이메일전송예정일
         /// </summary>
-        public String EmailDate { get; set; }
+        public string EmailDate { get; set; }
 
         /// <summary>
         /// 이메일전송예정시간
         /// </summary>
-        public String EmailTime { get; set; }
+        public string EmailTime { get; set; }
 
         /// <summary>
         /// 팩스
         /// </summary>
-        public String Fax { get; set; }
+        public string Fax { get; set; }
 
         /// <summary>
         /// 팩스전송예정일
         /// </summary>
-        public String FaxDate { get; set; }
+        public string FaxDate { get; set; }
 
         /// <summary>
         /// 팩스전송예정시간
         /// </summary>
-        public String FaxTime { get; set; }
+        public string FaxTime { get; set; }
     }
 
     #endregion

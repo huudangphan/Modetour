@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModeTour.Commons;
-using ModeTour.Entities;
+using ModeTour.Entities.Air;
 using ModeTour.Services;
 
 namespace ModeTour.API.Controllers.Flight
@@ -19,9 +19,12 @@ namespace ModeTour.API.Controllers.Flight
         [HttpGet]
         public HttpResult GetBanner()
         {
-            return unitOfWork.AirBooking.GetBanner();
 
+            return unitOfWork.AirBooking.GetBanner();
         }
+
+
+
         [HttpGet]
         public HttpResult GetMajorCity()
         {
@@ -75,6 +78,10 @@ namespace ModeTour.API.Controllers.Flight
         }
 
         #endregion
-
+        [HttpGet]
+        public void AirBookingEndMail(int OID, int PID, string ReDomain)
+        {
+            unitOfWork.AirBooking.AirBookingEndMail(OID, PID, ReDomain);
+        }
     }
 }

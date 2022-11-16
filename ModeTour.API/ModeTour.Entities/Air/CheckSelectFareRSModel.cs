@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     [Serializable]
     [XmlRoot(ElementName = "ResponseDetails")]

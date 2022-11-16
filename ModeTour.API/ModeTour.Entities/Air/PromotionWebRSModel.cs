@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     [Serializable]
     [XmlRoot(ElementName = "modetour")]
@@ -15,7 +15,7 @@ namespace ModeTour.Entities
         /// gubun
         /// </summary>
         [XmlAttribute(AttributeName = "gubun")]
-        public String Gubun { get; set; }
+        public string Gubun { get; set; }
 
         /// <summary>
         /// 기획전 리스트
@@ -30,31 +30,31 @@ namespace ModeTour.Entities
         /// openYN
         /// </summary>
         [XmlAttribute(AttributeName = "open")]
-        public String openYn { get; set; }
+        public string openYn { get; set; }
 
         /// <summary>
         /// 이미지url
         /// </summary>
         [XmlElement(ElementName = "imgurl")]
-        public String ImageURL { get; set; }
+        public string ImageURL { get; set; }
 
         /// <summary>
         /// 경로
         /// </summary>
         [XmlElement(ElementName = "linkurl")]
-        public String LinkURL { get; set; }
+        public string LinkURL { get; set; }
 
         /// <summary>
         /// 제목
         /// </summary>
         [XmlElement(ElementName = "title")]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// 설명
         /// </summary>
         [XmlElement(ElementName = "subject")]
-        public String Subject { get; set; }
+        public string Subject { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ModeTour.Entities
+namespace ModeTour.Entities.Air
 {
     public class AddBookingRQModel
     {
@@ -224,7 +224,7 @@ namespace ModeTour.Entities
         /// 발권대행수수료 적용 여부(Y/N)
         /// </summary>
         /// <value>Y</value>
-        public string ATSF { get { return this._atsf; } set { this._atsf = value; } }
+        public string ATSF { get { return _atsf; } set { _atsf = value; } }
 
         private string _ftx = "";
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace ModeTour.Entities
+﻿namespace ModeTour.Entities.Air
 {
     public class GetTodayListDSModel
     {
@@ -13,47 +13,47 @@
         /// <summary>
         /// 재고번호
         /// </summary>
-        public Int64 Vnum { get; set; }
+        public long Vnum { get; set; }
 
         /// <summary>
         /// 단체명
         /// </summary>
-        public String GroupNM { get; set; }
+        public string GroupNM { get; set; }
 
         /// <summary>
         /// 상품코드
         /// </summary>
-        public String ItemCD { get; set; }
+        public string ItemCD { get; set; }
 
         /// <summary>
         /// 이전가격
         /// </summary>
-        public Int64 Normal { get; set; }
+        public long Normal { get; set; }
 
         /// <summary>
         /// 가격
         /// </summary>
-        public Int64 disFare { get; set; }
+        public long disFare { get; set; }
 
         /// <summary>
         /// 제세공과금
         /// </summary>
-        public Int64 Tax2 { get; set; }
+        public long Tax2 { get; set; }
 
         /// <summary>
         /// Tax
         /// </summary>
-        public Int64 Tax { get; set; }
+        public long Tax { get; set; }
 
         /// <summary>
         /// 항공코드
         /// </summary>
-        public String AirCD { get; set; }
+        public string AirCD { get; set; }
 
         /// <summary>
         /// 항공사명
         /// </summary>
-        public String AirNM { get; set; }
+        public string AirNM { get; set; }
 
         /// <summary>
         /// 출발일(yyyy-MM-dd)
@@ -68,36 +68,36 @@
         /// <summary>
         /// 출발시간
         /// </summary>
-        public String STime { get; set; }
+        public string STime { get; set; }
 
         /// <summary>
         /// 도착시간
         /// </summary>
-        public String ETime { get; set; }
+        public string ETime { get; set; }
 
         /// <summary>
         /// 기간
         /// </summary>
-        public Int64 Day { get; set; }
+        public long Day { get; set; }
 
         /// <summary>
         /// 웹판매가능좌석
         /// </summary>
-        public Int64 RSeatWeb { get; set; }
+        public long RSeatWeb { get; set; }
 
         /// <summary>
         /// 잔여좌석
         /// </summary>
-        public Int64 LeftOverSeat { get; set; }
+        public long LeftOverSeat { get; set; }
 
         /// <summary>
         /// 잔여좌석2
         /// </summary>
-        public Int64 LeftOverSeat2 { get; set; }
+        public long LeftOverSeat2 { get; set; }
 
         /// <summary>
         /// 구역번호
         /// </summary>
-        public String AreaNum { get; set; }
+        public string AreaNum { get; set; }
     }
 }
